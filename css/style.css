@@ -111,7 +111,7 @@ select {
   width: min(90%, 68.75rem);
   margin-inline: auto;
 
-  outline: 2px solid lime;
+  /* outline: 2px solid lime; */
 }
 
 p[class*="__description"] {
@@ -124,6 +124,9 @@ body {
   font-family: "Rubik", sans-serif;
   font-size: 1.125rem;
   overflow-x: hidden;
+}
+body.active-body {
+  overflow-y: hidden;
 }
 
 .app {
@@ -416,7 +419,7 @@ a {
 }
 
 .feature__item--description {
-  margin-top: 5rem;
+  margin-top: 8rem;
 }
 
 .description__title {
@@ -520,6 +523,7 @@ a {
 /* frequently ask / section 4 */
 
 .frequently-ask {
+  margin-top: 8rem;
   text-align: center;
 }
 
@@ -531,7 +535,7 @@ a {
 .question__list {
   margin-top: 3rem;
   text-align: left;
-  max-width: 40rem;
+  max-width: 35rem;
   margin-inline: auto;
 }
 
@@ -569,6 +573,11 @@ a {
   transform-origin: top;
   transition: transform 0.2s ease-out, margin-top 0.1s ease-in-out;
 }
+
+.question__item:hover > .question__heading {
+  color: hsl(var(--Primary-200));
+}
+
 .question__item.active > p > svg path,
 .question__item.active > .question__heading {
   stroke: red;
@@ -625,8 +634,38 @@ form {
   position: relative;
 }
 
+.label {
+  position: relative;
+  max-width: max-content;
+}
+
+.error-message {
+  position: absolute;
+  background-color: hsl(var(--Primary-200));
+  bottom: -2.5rem;
+  font-style: italic;
+  width: 98.7%;
+  left: 0.1rem;
+  text-align: left;
+  border-radius: 0.3rem;
+  padding: 0.5em 0.1em;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.invalid {
+  border: 2px solid hsl(var(--Primary-200));
+  background-image: url(../images/icon-error.svg);
+  background-repeat: no-repeat;
+  background-position: 95% center;
+}
+
+.invalid:focus-visible {
+  outline: transparent;
+}
+
 .contact-us__link {
-  margin-top: 1rem;
+  margin-top: 2.5rem;
   border-radius: 0.4rem;
   --global-link-bg-clr: hsl(var(--Primary-200));
   --global-link-txt-clr: hsl(0, 0%, 100%);
@@ -778,14 +817,31 @@ footer {
   form {
     display: flex;
     gap: 1rem;
+    /* outline: 1px solid red; */
   }
 
   .contact-us__heading {
     margin-top: 1.5rem;
   }
 
+  .error-message {
+    bottom: -1.7rem;
+    padding: 0.5em 0.1em;
+    font-size: 0.8rem;
+  }
+
+  .error-message {
+    width: 99.5%;
+  }
+
+  .email {
+    width: 20rem;
+  }
+
   .contact-us__link {
     flex-basis: 50%;
+
+    margin-top: 0.9rem;
   }
   /* contact us end */
 
@@ -913,6 +969,13 @@ footer {
   /* section 2 feature section end */
 
   /* section 3 / product  */
+
+  /* .product__item:nth-child(2) {
+    margin-top: 3rem;
+  }
+  .product__item:nth-child(3) {
+    margin-top: 6rem;
+  } */
 
   .product__item:nth-child(2) {
     margin-top: 3rem;

@@ -1,13 +1,17 @@
 const hamburgerMenuBtn = document.querySelector("[data-header-nav-btn]");
 const headerNav = document.querySelector("[data-header-nav]");
 const bookmarkLogo = document.querySelector(".bookmark");
-
+const emailInput = document.querySelector(".email");
+const errorMessage = document.querySelector("[data-error-message]");
+const body = document.querySelector("body");
 hamburgerMenuBtn.addEventListener("click", () => {
   hamburgerMenuBtn.classList.toggle("nav-open");
   headerNav.classList.toggle("nav-open");
   bookmarkLogo.children[0].classList.toggle("nav-open");
   bookmarkLogo.children[1].children[0].classList.toggle("nav-open");
   bookmarkLogo.children[1].children[1].classList.toggle("nav-open");
+
+  body.classList.toggle("active-body");
 });
 
 window.addEventListener("click", (e) => {
@@ -42,3 +46,22 @@ function featureTabs(target) {
     delete activeTab.dataset.activeTab;
   }
 }
+
+const isValidEmail = (email) => {
+  const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g; // sample@g.co
+  return re.test(String(email).toLowerCase());
+};
+
+emailInput.addEventListener("keyup", () => {
+  if (!isValidEmail(emailInput.value)) {
+    emailInput.classList.add("invalid");
+    errorMessage.style.setProperty("display", "block");
+  } else {
+    emailInput.classList.remove("invalid");
+    errorMessage.style.setProperty("display", "none");
+  }
+});
+
+window.addEventListener("load", () => {
+  emailInput.value = "";
+});
